@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>código ascii</title>
+    <style>
+        /* Estilo para o corpo da página com fundo preto */
+        body {
+            background-color: black;
+            color: white; /* Cor do texto */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Bungee', sans-serif; /* Fonte personalizada Bungee */
+        }
+
+        /* Estilo para o título "Cifra ASCII" */
+        h1 {
+            font-size: 48px; /* Tamanho maior do título */
+            margin-top: 20px; /* Espaço acima do título */
+            color: rgb(197, 146, 209); /* Cor do título em dourado */
+        }
+
+        /* Estilo para o formulário */
+        form {
+            text-align: center;
+            margin-top: 20px; /* Espaço entre o título e o formulário */
+        }
+
+        /* Estilo para a entrada de mensagem */
+        input[type="text"] {
+            width: 300px; /* Largura da entrada de mensagem */
+            padding: 10px; /* Espaçamento interno da entrada de mensagem */
+            font-size: 16px; /* Tamanho da fonte da entrada de mensagem */
+            display: block; /* Coloca as entradas em uma nova linha */
+            margin: 5px auto; /* Centraliza horizontalmente e adiciona espaço vertical */
+            background-color: rgba(245, 234, 77, 0.884); /* Cor de fundo lilás claro */
+            border: 2px solid rgb(153, 83, 170); /* Borda dourada */
+            color: black; /* Cor do texto dentro da entrada */
+        }
+
+        /* Estilo para os rótulos */
+        label {
+            font-family: 'Roboto', sans-serif; /* Fonte Roboto */
+        }
+
+        /* Estilo para os botões de criptografar e descriptografar */
+        button {
+            background-color: rgb(122, 95, 148);
+            color: white; /* Cor do texto em branco */
+            font-size: 18px; /* Tamanho da fonte dos botões */
+            padding: 10px 20px; /* Espaçamento interno dos botões (vertical horizontal) */
+            margin: 10px; /* Espaço entre os botões */
+            cursor: pointer; /* Altera o cursor ao passar o mouse sobre os botões */
+            border: 2px solid black; /* Borda preta */
+            animation: blink 1s infinite alternate; /* Animação de piscar */
+        }
+
+        /* Keyframes para a animação de piscar */
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>código ascii</h1>
+    <form>
+        <!-- Adicione um div para agrupar as entradas de mensagem e centralizá-las -->
+        <div style="text-align: center;">
+            <label for="mensagemAberta" style="font-family: 'Roboto', sans-serif;">mensagem aberta:</label>
+            <br>
+            <input type="text" id="mensagemAberta">
+            <br><br> <!-- Duas quebras de linha para adicionar espaço entre a mensagem e os botões -->
+            <label for="mensagemCriptografada" style="font-family: 'Roboto', sans-serif;">mensagem criptografada:</label>
+            <br>
+            <input type="text" id="mensagemCriptografada">
+        </div>
+        <br><br> <!-- Duas quebras de linha para adicionar espaço abaixo da mensagem criptografada -->
+        <!-- Adicione IDs aos botões para aplicar estilos específicos a eles -->
+        <button type="button" id="criptografarBtn" onclick="criptografar()" style="border: 2px solid black;">criptografar</button>
+        <button type="button" id="descriptografarBtn" onclick="descriptografar()" style="border: 2px solid black;">descriptografar</button>
+    </form>
+
+    <script>
+        // Função para criptografar uma mensagem usando o código ASCII
+        function criptografar() {
+            const mensagemAberta = document.getElementById("mensagemAberta").value;
+            let mensagemCriptografada = "";
+
+            for (let i = 0; i < mensagemAberta.length; i++) {
+                const charCode = mensagemAberta.charCodeAt(i);
+                mensagemCriptografada += charCode + " "; // Adicione um espaço entre os códigos ASCII
+            }
+
+            document.getElementById("mensagemCriptografada").value = mensagemCriptografada.trim();
+        }
+
+        // Função para descriptografar uma mensagem usando o código ASCII
+        function descriptografar() {
+            const mensagemCriptografada = document.getElementById("mensagemCriptografada").value;
+            const charCodes = mensagemCriptografada.split(" ");
+            let mensagemAberta = "";
+
+            for (let i = 0; i < charCodes.length; i++) {
+                const charCode = parseInt(charCodes[i], 10);
+                mensagemAberta += String.fromCharCode(charCode);
+            }
+
+            document.getElementById("mensagemAberta").value = mensagemAberta;
+        }
+    </script>
+</body>
+</html>
